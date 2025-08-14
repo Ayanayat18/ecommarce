@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
 
-ini_set('display_errors', env('APP_DEBUG','false')==='true' ? '1' : '0');
+// Set conservative defaults; APP_DEBUG handled after env is loaded below
+ini_set('display_errors', '0');
 error_reporting(E_ALL);
 
 define('BASE_PATH', dirname(__DIR__));
@@ -40,6 +41,11 @@ if (file_exists($envPath)) {
 		$value = trim($value, "\"' ");
 		if ($name !== '') { $_ENV[$name] = $value; }
 	}
+}
+
+// Now toggle debug
+if (($_ENV['APP_DEBUG'] ?? 'false') === 'true') {
+	ini_set('display_errors', '1');
 }
 
 // Set timezone
