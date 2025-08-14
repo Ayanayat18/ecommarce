@@ -4,6 +4,7 @@
 	<div class="col-md-4">
 		<h1 class="h4 mb-3">Admin Login</h1>
 		<?php $errs = flash('errors') ?? []; ?>
+		<?php if ($msg = flash('success')): ?><div class="alert alert-success"><?= e($msg) ?></div><?php endif; ?>
 		<form method="post" action="/admin/login">
 			<?= csrf_field() ?>
 			<div class="mb-2">
@@ -17,6 +18,7 @@
 			</div>
 			<button class="btn btn-primary w-100">Login</button>
 		</form>
+		<div class="text-center mt-2"><a href="/admin/forgot">Forgot password?</a></div>
 	</div>
 </div>
 <?php App\Core\View::end(); ?>

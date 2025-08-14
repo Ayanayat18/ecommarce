@@ -71,6 +71,12 @@ class Router
 	}
 
 	protected function invoke($handler, array $params): void {
+		// Support [ClassName, method]
+		if (is_array($handler) && count($handler) === 2 && is_string($handler[0]) && is_string($handler[1])) {
+			$controller = new $handler[0]();
+			call_user_func_array([$controller, $handler[1]], $params);
+			return;
+		}
 		if (is_callable($handler)) { call_user_func_array($handler, $params); return; }
 		if (is_string($handler) && str_contains($handler, '@')) {
 			[$class, $method] = explode('@', $handler, 2);

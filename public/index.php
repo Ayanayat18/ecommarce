@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-ini_set('display_errors', '0');
+ini_set('display_errors', env('APP_DEBUG','false')==='true' ? '1' : '0');
 error_reporting(E_ALL);
 
 define('BASE_PATH', dirname(__DIR__));
