@@ -42,7 +42,7 @@
 				<div class="img-about dots"><img src="<?= asset('vendor/uire/images/hero_bg_2.jpg') ?>" alt="Image" class="img-fluid" /></div>
 			</div>
 			<div class="col-lg-4">
-				<div class="d-flex feature-h mb-3"><span class="wrap-icon me-3"><span class="icon-home2"></span></span><div class="feature-text"><h3 class="heading">Quality Properties</h3><p class="text-black-50">Premium materials, thoughtful planning, and a focus on community.</p></div></div>
+				<div class="d-flex feature-h mb-3"><span class="wrap-icon me-3"><span class="icon-home"></span></span><div class="feature-text"><h3 class="heading">Quality Properties</h3><p class="text-black-50">Premium materials, thoughtful planning, and a focus on community.</p></div></div>
 				<div class="d-flex feature-h mb-3"><span class="wrap-icon me-3"><span class="icon-person"></span></span><div class="feature-text"><h3 class="heading">Experienced Team</h3><p class="text-black-50">Seasoned engineers, architects, and project managers.</p></div></div>
 				<div class="d-flex feature-h"><span class="wrap-icon me-3"><span class="icon-security"></span></span><div class="feature-text"><h3 class="heading">Safe & Reliable</h3><p class="text-black-50">Compliance, safety, and on-time delivery.</p></div></div>
 			</div>

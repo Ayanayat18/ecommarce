@@ -40,7 +40,7 @@
 		</div>
 		<div class="row">
 			<?php foreach ($projects as $p): ?>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+				<div class="col-12 col-md-6 col-lg-4">
 					<div class="property-item mb-30">
 						<a href="/projects/<?= e($p['slug']) ?>" class="img">
 							<img src="<?= upload_url($p['cover_image']) ?>" alt="<?= e($p['title']) ?>" class="img-fluid" />

@@ -1,0 +1,5 @@
+/* Frontend overrides */
+body { font-size: 16px; }
+
+/* Ensure nav logo is readable on all breakpoints */
+.site-nav .logo { font-weight: 700; }

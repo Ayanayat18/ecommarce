@@ -1,9 +1,15 @@
 <?php App\Core\View::extend('main'); ?>
 <?php App\Core\View::start('content'); ?>
-<div class="hero overlay" style="background-image: url('<?= asset('vendor/uire/images/hero_bg_2.jpg') ?>')">
+<div class="hero">
+	<div class="hero-slide">
+		<?php foreach (array_slice($sliders, 0, 3) as $s): ?>
+			<div class="img overlay" style="background-image: url('<?= upload_url($s['image'] ?? 'placeholders/t1.jpg') ?>')"></div>
+		<?php endforeach; ?>
+		<div class="img overlay" style="background-image: url('<?= asset('vendor/uire/images/hero_bg_2.jpg') ?>')"></div>
+	</div>
 	<div class="container">
 		<div class="row justify-content-center align-items-center">
-			<div class="col-lg-9 text-center mt-5">
+			<div class="col-lg-9 text-center">
 				<h1 class="heading" data-aos="fade-up"><?= e($sliders[0]['headline'] ?? settings('site.name','Aurora Holdings')) ?></h1>
 				<p class="lead text-white-50" data-aos="fade-up" data-aos-delay="150"><?= e($sliders[0]['subtext'] ?? 'Premium developments crafted with care and precision.') ?></p>
 				<p data-aos="fade-up" data-aos-delay="300">
@@ -27,7 +33,7 @@
 			<?php foreach (array_slice($features, 0, 6) as $f): ?>
 				<div class="col-12 col-md-6 col-lg-4" data-aos="fade-up">
 					<div class="p-4 bg-white rounded-3 shadow-sm h-100">
-						<div class="mb-3"><span class="icon-home2 text-primary" style="font-size:28px"></span></div>
+						<div class="mb-3"><span class="icon-home text-primary" style="font-size:28px"></span></div>
 						<h5 class="mb-1"><?= e($f['title']) ?></h5>
 						<p class="text-muted mb-0"><?= e($f['body']) ?></p>
 					</div>

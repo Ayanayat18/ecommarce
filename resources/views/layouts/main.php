@@ -6,40 +6,38 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?= e(settings('site.meta_title', config('app','name','Aurora Holdings'))) ?></title>
 	<meta name="description" content="<?= e(settings('site.meta_description','')) ?>">
-	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="<?= asset('vendor/uire/css/bootstrap.css') ?>">
-	<link rel="stylesheet" href="<?= asset('vendor/uire/css/aos.css') ?>">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="<?= asset('vendor/uire/fonts/icomoon/style.css') ?>">
+	<link rel="stylesheet" href="<?= asset('vendor/uire/fonts/flaticon/font/flaticon.css') ?>">
 	<link rel="stylesheet" href="<?= asset('vendor/uire/css/tiny-slider.css') ?>">
+	<link rel="stylesheet" href="<?= asset('vendor/uire/css/aos.css') ?>">
 	<link rel="stylesheet" href="<?= asset('vendor/uire/css/style.css') ?>">
+	<link rel="stylesheet" href="<?= asset('css/site.css') ?>">
 	<link rel="icon" href="<?= asset('images/favicon.png') ?>">
 </head>
 <body>
-	<!-- Top bar -->
-	<div class="header-top">
-		<div class="container">
-			<div class="d-flex justify-content-between py-1 small text-white">
-				<div><i class="bi bi-geo-alt me-1"></i><?= e(settings('site.address','')) ?> | <i class="bi bi-telephone me-1"></i><?= e(settings('site.phone','')) ?> | <i class="bi bi-envelope me-1"></i><?= e(settings('site.email','')) ?></div>
-				<div class="d-none d-md-block">
-					<a class="text-white-50 me-3" href="#">Facebook</a>
-					<a class="text-white-50 me-3" href="#">LinkedIn</a>
-					<a class="text-white-50" href="#">YouTube</a>
-				</div>
-			</div>
+	<div id="overlayer"></div>
+	<div class="loader"><div class="spinner-border text-primary" role="status"></div></div>
+	<div class="site-mobile-menu site-navbar-target">
+		<div class="site-mobile-menu-header">
+			<div class="site-mobile-menu-close"><span class="js-menu-toggle"></span></div>
 		</div>
+		<div class="site-mobile-menu-body"></div>
 	</div>
-	<!-- Navbar -->
 	<nav class="site-nav">
 		<div class="container">
-			<div class="site-navigation">
-				<a href="/" class="logo m-0"><?= e(settings('site.name', config('app','name'))) ?><span class="text-primary">.</span></a>
-				<ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-					<?php foreach ($items as $it): ?>
-						<li><a href="<?= e($it['url']) ?>"><?= e($it['title']) ?></a></li>
-					<?php endforeach; ?>
-				</ul>
-				<a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light">
-					<span></span>
-				</a>
+			<div class="menu-bg-wrap">
+				<div class="site-navigation">
+					<a href="/" class="logo m-0 float-start"><?= e(settings('site.name', config('app','name'))) ?></a>
+					<ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+						<?php foreach ($items as $it): ?>
+							<li><a href="<?= e($it['url']) ?>"><?= e($it['title']) ?></a></li>
+						<?php endforeach; ?>
+					</ul>
+					<a href="#" class="burger light site-menu-toggle js-menu-toggle d-inline-block d-lg-none"><span></span></a>
+				</div>
 			</div>
 		</div>
 	</nav>
@@ -94,6 +92,7 @@
 	<script src="<?= asset('vendor/uire/js/bootstrap.bundle.min.js') ?>"></script>
 	<script src="<?= asset('vendor/uire/js/tiny-slider.js') ?>"></script>
 	<script src="<?= asset('vendor/uire/js/aos.js') ?>"></script>
+	<script src="<?= asset('vendor/uire/js/counter.js') ?>"></script>
 	<script src="<?= asset('vendor/uire/js/navbar.js') ?>"></script>
 	<script src="<?= asset('vendor/uire/js/custom.js') ?>"></script>
 </body>
