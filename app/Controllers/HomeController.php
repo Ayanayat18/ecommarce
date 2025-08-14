@@ -21,7 +21,8 @@ class HomeController extends Controller
 			'upcoming' => (int)$pdo->query("SELECT COUNT(*) FROM projects WHERE status='upcoming'")->fetchColumn(),
 		];
 		$latestPosts = $pdo->query("SELECT title, slug, cover_image, excerpt, published_at FROM posts WHERE status='published' ORDER BY published_at DESC LIMIT 3")->fetchAll();
-		view('home/index', compact('sliders','features','projects','testimonials','partners','counts','latestPosts'));
+		$aboutPage = $pdo->query("SELECT * FROM pages WHERE slug='about' LIMIT 1")->fetch();
+		view('home/index', compact('sliders','features','projects','testimonials','partners','counts','latestPosts','aboutPage'));
 	}
 
 	public function about(): void {
