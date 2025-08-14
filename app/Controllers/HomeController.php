@@ -15,7 +15,13 @@ class HomeController extends Controller
 		$projects = $pdo->query('SELECT * FROM projects ORDER BY created_at DESC LIMIT 9')->fetchAll();
 		$testimonials = $pdo->query('SELECT * FROM testimonials ORDER BY created_at DESC LIMIT 6')->fetchAll();
 		$partners = $pdo->query('SELECT * FROM partners ORDER BY sort_order ASC')->fetchAll();
-		view('home/index', compact('sliders','features','projects','testimonials','partners'));
+		$counts = [
+			'completed' => (int)$pdo->query("SELECT COUNT(*) FROM projects WHERE status='completed'")->fetchColumn(),
+			'ongoing' => (int)$pdo->query("SELECT COUNT(*) FROM projects WHERE status='ongoing'")->fetchColumn(),
+			'upcoming' => (int)$pdo->query("SELECT COUNT(*) FROM projects WHERE status='upcoming'")->fetchColumn(),
+		];
+		$latestPosts = $pdo->query("SELECT title, slug, cover_image, excerpt, published_at FROM posts WHERE status='published' ORDER BY published_at DESC LIMIT 3")->fetchAll();
+		view('home/index', compact('sliders','features','projects','testimonials','partners','counts','latestPosts'));
 	}
 
 	public function about(): void {

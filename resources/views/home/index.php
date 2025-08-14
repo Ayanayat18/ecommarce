@@ -44,7 +44,14 @@
 <section class="py-5">
 	<div class="container">
 		<div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
-			<h2 class="mb-0 fw-semibold">Projects</h2>
+			<div class="d-flex align-items-center gap-3">
+				<h2 class="mb-0 fw-semibold">Projects</h2>
+				<div class="d-none d-md-flex gap-2">
+					<span class="badge text-bg-light border"><small class="text-uppercase">Completed</small> <?= (int)($counts['completed'] ?? 0) ?></span>
+					<span class="badge text-bg-light border"><small class="text-uppercase">Ongoing</small> <?= (int)($counts['ongoing'] ?? 0) ?></span>
+					<span class="badge text-bg-light border"><small class="text-uppercase">Upcoming</small> <?= (int)($counts['upcoming'] ?? 0) ?></span>
+				</div>
+			</div>
 			<div class="btn-group" role="group">
 				<a class="btn btn-outline-secondary" href="/projects?status=completed">Completed</a>
 				<a class="btn btn-outline-secondary" href="/projects?status=ongoing">Ongoing</a>
@@ -90,6 +97,31 @@
 			</div>
 			<button class="carousel-control-prev" type="button" data-bs-target="#testimonials" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
 			<button class="carousel-control-next" type="button" data-bs-target="#testimonials" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+		</div>
+	</div>
+</section>
+
+<section class="py-5">
+	<div class="container">
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<h2 class="fw-semibold mb-0">Latest News</h2>
+			<a class="text-decoration-none" href="/blog">View all</a>
+		</div>
+		<div class="row g-4">
+			<?php foreach ($latestPosts as $post): ?>
+				<div class="col-md-4">
+					<a class="text-decoration-none" href="/blog/<?= e($post['slug']) ?>">
+						<div class="card h-100">
+							<?php if (!empty($post['cover_image'])): ?><img src="<?= upload_url($post['cover_image']) ?>" class="card-img-top" alt="<?= e($post['title']) ?>"><?php endif; ?>
+							<div class="card-body">
+								<div class="small text-muted mb-1"><?= date('M d, Y', strtotime($post['published_at'])) ?></div>
+								<h6 class="mb-1 text-dark"><?= e($post['title']) ?></h6>
+								<p class="text-muted small mb-0"><?= e($post['excerpt'] ?? '') ?></p>
+							</div>
+						</div>
+					</a>
+				</div>
+			<?php endforeach; ?>
 		</div>
 	</div>
 </section>
