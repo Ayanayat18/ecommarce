@@ -1,217 +1,116 @@
 <?php App\Core\View::extend('main'); ?>
 <?php App\Core\View::start('content'); ?>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?= asset('css/template.css') ?>">
-
-<header>
-	<div class="header-top">
-		<div class="container-template">
-			<div class="header-top-content">
-				<div class="header-contact">
-					<span><i class="fas fa-phone"></i> <?= e(settings('site.phone','+880 1234 567 890')) ?></span>
-					<span><i class="fas fa-envelope"></i> <?= e(settings('site.email','hello@example.com')) ?></span>
-				</div>
-				<div class="header-social">
-					<a href="#"><i class="fab fa-facebook-f"></i></a>
-					<a href="#"><i class="fab fa-twitter"></i></a>
-					<a href="#"><i class="fab fa-linkedin-in"></i></a>
-					<a href="#"><i class="fab fa-instagram"></i></a>
-				</div>
+<div class="hero overlay" style="background-image: url('<?= asset('vendor/uire/images/hero_bg_2.jpg') ?>')">
+	<div class="container">
+		<div class="row justify-content-center align-items-center">
+			<div class="col-lg-9 text-center mt-5">
+				<h1 class="heading" data-aos="fade-up"><?= e($sliders[0]['headline'] ?? settings('site.name','Aurora Holdings')) ?></h1>
+				<p class="lead text-white-50" data-aos="fade-up" data-aos-delay="150"><?= e($sliders[0]['subtext'] ?? 'Premium developments crafted with care and precision.') ?></p>
+				<p data-aos="fade-up" data-aos-delay="300">
+					<a href="/projects" class="btn btn-primary py-2 px-4">Explore Projects</a>
+					<a href="/contact" class="btn btn-outline-light py-2 px-4">Contact Us</a>
+				</p>
 			</div>
 		</div>
 	</div>
-	<div class="header-main">
-		<div class="container-template">
-			<div class="header-main-content" style="display:flex;justify-content:space-between;align-items:center;">
-				<a href="#home" class="logo">
-					<div class="logo-icon"><i class="fas fa-building"></i></div>
-					<div class="logo-text"><?= e(settings('site.name', config('app','name','Aurora Holdings'))) ?></div>
-				</a>
-				<nav>
-					<ul id="nav-menu">
-						<li><a href="#home">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#services">Services</a></li>
-						<li><a href="#projects">Projects</a></li>
-						<li><a href="#testimonials">Testimonials</a></li>
-						<li><a href="#contact">Contact</a></li>
-					</ul>
-					<button class="mobile-menu-toggle" id="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
-				</nav>
-			</div>
-		</div>
-	</div>
-</header>
+</div>
 
-<section class="hero" id="home">
-	<div class="container-template">
-		<div class="hero-content">
-			<h2><?= e($sliders[0]['headline'] ?? 'Building Excellence, Creating Legacies') ?></h2>
-			<p class="hero-subtitle"><?= e($sliders[0]['subtext'] ?? 'Where vision meets precision in construction and development') ?></p>
-			<div class="hero-buttons">
-				<a href="/contact" class="btn-t primary">Start Your Project</a>
-				<a href="#services" class="btn-t secondary">Our Services</a>
+<div class="section">
+	<div class="container">
+		<div class="row mb-5 align-items-center">
+			<div class="col-lg-6 text-center mx-auto">
+				<h2 class="font-weight-bold text-primary heading">Why Choose Us</h2>
+				<p class="text-muted">Thoughtful design, dependable delivery, and lasting value.</p>
 			</div>
 		</div>
-	</div>
-</section>
-
-<section class="about" id="about">
-	<div class="container-template">
-		<div class="section-header fade-in">
-			<h2>About <?= e(settings('site.name', 'Our Company')) ?></h2>
-			<p><?= e(strip_tags($aboutPage['meta_description'] ?? 'Delivering world-class developments through innovation and quality.')) ?></p>
-		</div>
-		<div class="about-content">
-			<div class="about-image fade-in">
-				<img src="<?= upload_url($sliders[1]['image'] ?? ($sliders[0]['image'] ?? 'placeholders/p1.jpg')) ?>" alt="About Us">
-			</div>
-			<div class="about-text fade-in">
-				<h3>Your Trusted Construction Partner</h3>
-				<div><?= $aboutPage['body'] ?? '<p>We specialize in delivering premium residential, commercial, and infrastructure projects with a strong focus on sustainability and customer satisfaction.</p>' ?></div>
-				<div class="stats-grid">
-					<div class="stat-item"><div class="stat-number"><?= (int)($counts['completed'] ?? 0) ?></div><div class="stat-label">Completed Projects</div></div>
-					<div class="stat-item"><div class="stat-number"><?= (int)($counts['ongoing'] ?? 0) ?></div><div class="stat-label">Ongoing</div></div>
-					<div class="stat-item"><div class="stat-number"><?= (int)($counts['upcoming'] ?? 0) ?></div><div class="stat-label">Upcoming</div></div>
-					<div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Commitment</div></div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="services" id="services">
-	<div class="container-template">
-		<div class="section-header fade-in">
-			<h2>Our Premium Services</h2>
-			<p>What we do for residential, commercial, and community spaces</p>
-		</div>
-		<div class="services-grid">
+		<div class="row g-4">
 			<?php foreach (array_slice($features, 0, 6) as $f): ?>
-				<div class="service-card fade-in">
-					<div class="service-icon"><i class="fas fa-city"></i></div>
-					<h3><?= e($f['title']) ?></h3>
-					<p><?= e($f['body']) ?></p>
-				</div>
-			<?php endforeach; ?>
-		</div>
-	</div>
-</section>
-
-<section class="projects" id="projects">
-	<div class="container-template">
-		<div class="section-header fade-in">
-			<h2>Featured Projects</h2>
-			<p>Explore our latest residential and commercial developments</p>
-		</div>
-		<div class="projects-grid">
-			<?php foreach (array_slice($projects, 0, 6) as $p): ?>
-				<div class="project-card fade-in">
-					<div class="project-image">
-						<img src="<?= upload_url($p['cover_image']) ?>" alt="<?= e($p['title']) ?>">
-						<div class="project-overlay"><div class="project-overlay-text"><h3>View Project Details</h3></div></div>
-					</div>
-					<div class="project-info">
-						<h3><?= e($p['title']) ?></h3>
-						<p><?= e(mb_substr(strip_tags($p['overview'] ?? ''), 0, 120)) ?>...</p>
-						<div class="project-meta"><span><i class="fas fa-map-marker-alt"></i> <?= e($p['city']) ?></span><span><i class="fas fa-calendar"></i> <?= date('Y', strtotime($p['created_at'] ?? date('Y-m-d'))) ?></span></div>
+				<div class="col-12 col-md-6 col-lg-4" data-aos="fade-up">
+					<div class="p-4 bg-white rounded-3 shadow-sm h-100">
+						<div class="mb-3"><span class="icon-home2 text-primary" style="font-size:28px"></span></div>
+						<h5 class="mb-1"><?= e($f['title']) ?></h5>
+						<p class="text-muted mb-0"><?= e($f['body']) ?></p>
 					</div>
 				</div>
 			<?php endforeach; ?>
 		</div>
 	</div>
-</section>
+</div>
 
-<section class="testimonials" id="testimonials">
-	<div class="container-template">
-		<div class="section-header fade-in"><h2>Client Testimonials</h2><p>What our customers say</p></div>
-		<div class="testimonials-grid">
+<div class="section">
+	<div class="container">
+		<div class="row mb-4 align-items-center">
+			<div class="col-lg-6">
+				<h2 class="font-weight-bold text-primary heading mb-0">Featured Properties</h2>
+			</div>
+			<div class="col-lg-6 text-lg-end"><a href="/projects" class="btn btn-outline-primary">View All</a></div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="property-slider-wrap" data-aos="fade-up">
+					<div class="property-slider">
+						<?php foreach (array_slice($projects, 0, 8) as $p): ?>
+							<div class="property-item">
+								<a href="/projects/<?= e($p['slug']) ?>" class="img">
+									<img src="<?= upload_url($p['cover_image']) ?>" alt="<?= e($p['title']) ?>" class="img-fluid" />
+								</a>
+								<div class="property-content">
+									<div class="price mb-2"><span><?= e($p['price_label'] ?? '') ?></span></div>
+									<div>
+										<span class="d-block mb-2 text-black-50"><?= e($p['address'] ?? '') ?></span>
+										<span class="city d-block mb-3"><?= e($p['city']) ?></span>
+										<div class="specs d-flex mb-4">
+											<span class="d-block d-flex align-items-center me-3"><span class="icon-bed me-2"></span><span class="caption"><?= e($p['bedrooms'] ?? '') ?> beds</span></span>
+											<span class="d-block d-flex align-items-center"><span class="icon-bath me-2"></span><span class="caption"><?= e($p['baths'] ?? '') ?> baths</span></span>
+										</div>
+										<a href="/projects/<?= e($p['slug']) ?>" class="btn btn-primary py-2 px-3">See details</a>
+									</div>
+								</div>
+							</div>
+						<?php endforeach; ?>
+					</div>
+					<div id="property-nav" class="controls" tabindex="0" aria-label="Carousel Navigation">
+						<span class="prev" data-controls="prev">Prev</span>
+						<span class="next" data-controls="next">Next</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section bg-light">
+	<div class="container">
+		<div class="row mb-5 align-items-center">
+			<div class="col-lg-6 text-center mx-auto">
+				<h2 class="font-weight-bold text-primary heading">Testimonials</h2>
+				<p class="text-muted">What our customers say</p>
+			</div>
+		</div>
+		<div class="row g-4">
 			<?php foreach (array_slice($testimonials, 0, 3) as $t): ?>
-				<div class="testimonial-card fade-in">
-					<div class="quote-icon"><i class="fas fa-quote-right"></i></div>
-					<div class="testimonial-text"><?= e($t['quote']) ?></div>
-					<div class="client-info">
-						<img src="<?= upload_url($t['photo'] ?? 'placeholders/t1.jpg') ?>" alt="<?= e($t['name']) ?>" class="client-image">
-						<div class="client-details"><h4><?= e($t['name']) ?></h4><p>Homeowner</p></div>
+				<div class="col-md-4" data-aos="fade-up">
+					<div class="p-4 bg-white rounded-3 shadow-sm h-100">
+						<p class="mb-3">“<?= e($t['quote']) ?>”</p>
+						<div class="d-flex align-items-center">
+							<img src="<?= upload_url($t['photo'] ?? 'placeholders/t1.jpg') ?>" class="rounded-circle me-3" width="48" height="48" alt="<?= e($t['name']) ?>">
+							<div class="fw-semibold"><?= e($t['name']) ?></div>
+						</div>
 					</div>
 				</div>
 			<?php endforeach; ?>
 		</div>
 	</div>
-</section>
+</div>
 
-<section class="contact" id="contact">
-	<div class="container-template">
-		<div class="section-header fade-in"><h2>Get In Touch</h2><p>Let's discuss how we can bring your vision to life</p></div>
-		<div class="contact-content">
-			<div class="contact-form fade-in">
-				<form method="post" action="/contact">
-					<?= csrf_field() ?>
-					<div class="form-group"><label>Full Name</label><input type="text" name="name" required></div>
-					<div class="form-group"><label>Email Address</label><input type="email" name="email" required></div>
-					<div class="form-group"><label>Topic</label><input type="text" name="topic" required></div>
-					<div class="form-group"><label>Message</label><textarea name="message" rows="5" required></textarea></div>
-					<button type="submit" class="btn-t primary">Send Message</button>
-				</form>
-			</div>
-			<div class="contact-info fade-in">
-				<h3>Contact Information</h3>
-				<div class="contact-item"><i class="fas fa-map-marker-alt"></i><p><?= e(settings('site.address','123 Skyline Avenue, Dhaka')) ?></p></div>
-				<div class="contact-item"><i class="fas fa-phone"></i><p><?= e(settings('site.phone','+880 1234 567 890')) ?></p></div>
-				<div class="contact-item"><i class="fas fa-envelope"></i><p><?= e(settings('site.email','hello@example.com')) ?></p></div>
+<div class="section pt-0">
+	<div class="container">
+		<div class="row justify-content-center align-items-center bg-primary text-white rounded-3 p-5" data-aos="fade-up">
+			<div class="col-lg-8 text-center">
+				<h3 class="mb-3">Ready to find your next address?</h3>
+				<a href="/projects" class="btn btn-light py-2 px-4">Browse Projects</a>
 			</div>
 		</div>
 	</div>
-</section>
-
-<footer class="template-footer">
-	<div class="container-template">
-		<div class="footer-content">
-			<div class="footer-column">
-				<h3>About <?= e(settings('site.name', 'Aurora Holdings')) ?></h3>
-				<p>Leading the construction industry with innovation, excellence, and sustainable practices.</p>
-				<div class="header-social">
-					<a href="#"><i class="fab fa-facebook-f"></i></a>
-					<a href="#"><i class="fab fa-twitter"></i></a>
-					<a href="#"><i class="fab fa-linkedin-in"></i></a>
-					<a href="#"><i class="fab fa-instagram"></i></a>
-				</div>
-			</div>
-			<div class="footer-column"><h3>Quick Links</h3>
-				<ul class="footer-links">
-					<li><a href="#home">Home</a></li>
-					<li><a href="#about">About Us</a></li>
-					<li><a href="#services">Services</a></li>
-					<li><a href="#projects">Projects</a></li>
-					<li><a href="#testimonials">Testimonials</a></li>
-					<li><a href="#contact">Contact</a></li>
-				</ul>
-			</div>
-			<div class="footer-column"><h3>Our Services</h3>
-				<ul class="footer-links">
-					<?php foreach (array_slice($features, 0, 6) as $f): ?>
-						<li><a href="#services"><?= e($f['title']) ?></a></li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
-			<div class="footer-column"><h3>Newsletter</h3>
-				<p>Stay updated with our latest projects and news</p>
-				<form class="newsletter-form" action="#" onsubmit="this.reset(); return false;">
-					<input type="email" placeholder="Your Email Address" required>
-					<button type="submit">Subscribe</button>
-				</form>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<p>&copy; <?= date('Y') ?> <?= e(settings('site.name', config('app','name'))) ?>. All Rights Reserved.</p>
-		</div>
-	</div>
-</footer>
-
-<script>
-const mobileMenuToggle=document.getElementById('mobile-menu-toggle');
-const navMenu=document.getElementById('nav-menu');
-if(mobileMenuToggle){mobileMenuToggle.addEventListener('click',()=>{navMenu.classList.toggle('active')});}
-</script>
+</div>
 <?php App\Core\View::end(); ?>
