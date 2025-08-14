@@ -1,0 +1,22 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Deny direct access to app and storage/private
+  RewriteRule ^app/ - [F,L]
+  RewriteRule ^storage/private/ - [F,L]
+
+  # Serve existing files directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Forward everything else to public/index.php
+  RewriteRule ^ public/index.php [QSA,L]
+</IfModule>
+
+<FilesMatch "\.(env|sql|ini|log)$">
+  Require all denied
+</FilesMatch>

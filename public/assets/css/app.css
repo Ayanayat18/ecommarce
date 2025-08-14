@@ -1,0 +1,6 @@
+body { scroll-behavior: smooth; }
+.carousel-caption { background: rgba(0,0,0,.35); padding: 1rem; border-radius: .25rem; }
+.timeline { list-style: none; padding-left: 1rem; border-left: 2px solid #ddd; }
+.timeline li { position: relative; margin: .75rem 0; }
+.timeline li::before { content: ''; position: absolute; left: -10px; top: .4rem; width: .5rem; height: .5rem; background: #0d6efd; border-radius: 50%; }
+.card img { object-fit: cover; height: 200px; }
