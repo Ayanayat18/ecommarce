@@ -76,4 +76,6 @@ $router = new Router();
 require BASE_PATH . '/app/routes.php';
 
 // Dispatch
-$router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+if (!defined('IN_INSTALL')) {
+	$router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+}

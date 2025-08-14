@@ -26,6 +26,15 @@ class ResourceController extends Controller
 		$select = $cols ? implode(',', $cols) . ',id' : '*';
 		$stmt = $pdo->query('SELECT ' . $select . ' FROM ' . $def['table'] . ' ORDER BY ' . $order);
 		$items = $stmt->fetchAll();
+		if ($resource === 'enquiries' && ($_GET['export'] ?? '') === 'csv') {
+			header('Content-Type: text/csv');
+			header('Content-Disposition: attachment; filename="enquiries.csv"');
+			$fp = fopen('php://output', 'w');
+			fputcsv($fp, array_merge($cols, ['id']));
+			foreach ($items as $row) { fputcsv($fp, array_map(fn($k) => $row[$k] ?? '', array_merge($cols, ['id']))); }
+			fclose($fp);
+			return;
+		}
 		$title = $def['title'];
 		view('admin/resources/index', compact('resource','def','items','cols','title'));
 	}

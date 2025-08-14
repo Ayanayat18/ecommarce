@@ -2,7 +2,10 @@
 <?php App\Core\View::start('content'); ?>
 <div class="d-flex justify-content-between align-items-center mb-3">
 	<h1 class="h4 mb-0"><?= e($title) ?></h1>
-	<?php if (empty($def['read_only'])): ?><a href="/admin/resource/<?= e($resource) ?>/create" class="btn btn-primary btn-sm">Create</a><?php endif; ?>
+	<div>
+		<?php if ($resource==='enquiries'): ?><a href="/admin/resource/enquiries?export=csv" class="btn btn-outline-secondary btn-sm">Export CSV</a><?php endif; ?>
+		<?php if (empty($def['read_only'])): ?><a href="/admin/resource/<?= e($resource) ?>/create" class="btn btn-primary btn-sm">Create</a><?php endif; ?>
+	</div>
 </div>
 <div class="table-responsive">
 	<table class="table table-striped table-sm align-middle">

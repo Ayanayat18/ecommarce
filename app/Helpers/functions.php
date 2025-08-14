@@ -73,3 +73,22 @@ function trans(string $key, array $replace = []): string {
 	}
 	return $text;
 }
+
+function settings(string $key, $default = null) {
+	return App\Core\Cache::remember('settings', 300, function(){
+		$rows = App\Core\Database::pdo()->query('SELECT `key`,`value` FROM settings')->fetchAll();
+		$out = [];
+		foreach ($rows as $r) { $out[$r['key']] = $r['value']; }
+		return $out;
+	})[$key] ?? $default;
+}
+
+function menu(string $name = 'primary'): array {
+	$key = 'menu_' . $name;
+	return App\Core\Cache::remember($key, 300, function() use ($name) {
+		$pdo = App\Core\Database::pdo();
+		$stmt = $pdo->prepare('SELECT mi.* FROM menus m JOIN menu_items mi ON mi.menu_id = m.id WHERE m.name = :n ORDER BY mi.sort_order ASC');
+		$stmt->execute(['n' => $name]);
+		return $stmt->fetchAll();
+	});
+}

@@ -55,11 +55,23 @@ if ($step === 2) {
 
 if ($step === 3) {
 	require BASE_PATH . '/public/index.php'; // boot minimal env helpers and DB
+	// generate placeholder images if not exist
+	$phDir = PUBLIC_PATH . '/uploads/placeholders';
+	if (!is_dir($phDir)) mkdir($phDir, 0775, true);
+	for ($i=1;$i<=9;$i++) { $f = $phDir . '/p' . $i . '.jpg'; if (!file_exists($f)) { imagejpeg(imagecreatetruecolor(1200,680), $f, 80); } }
+	for ($i=1;$i<=6;$i++) { $f = $phDir . '/g' . $i . '.jpg'; if (!file_exists($f)) { imagejpeg(imagecreatetruecolor(1200,800), $f, 80); } }
+	for ($i=1;$i<=6;$i++) { $f = $phDir . '/t' . $i . '.jpg'; if (!file_exists($f)) { imagejpeg(imagecreatetruecolor(600,600), $f, 80); } }
+	for ($i=1;$i<=6;$i++) { $f = $phDir . '/b' . $i . '.jpg'; if (!file_exists($f)) { imagejpeg(imagecreatetruecolor(1200,630), $f, 80); } }
+	for ($i=1;$i<=4;$i++) { $f = $phDir . '/brand' . $i . '.png'; if (!file_exists($f)) { imagepng(imagecreatetruecolor(200,60), $f, 6); } }
+	$slide1 = $phDir . '/slide1.jpg'; if (!file_exists($slide1)) imagejpeg(imagecreatetruecolor(1600,700), $slide1, 80);
+	$slide2 = $phDir . '/slide2.jpg'; if (!file_exists($slide2)) imagejpeg(imagecreatetruecolor(1600,700), $slide2, 80);
+	$slide3 = $phDir . '/slide3.jpg'; if (!file_exists($slide3)) imagejpeg(imagecreatetruecolor(1600,700), $slide3, 80);
 	try {
 		$pdo = App\Core\Database::pdo();
 		$schema = file_get_contents(BASE_PATH . '/database/schema.sql');
 		$pdo->exec($schema);
 		$seed = file_get_contents(BASE_PATH . '/database/seed.sql');
+		$seed = str_replace('placeholders/', 'placeholders/', $seed);
 		$pdo->exec($seed);
 		header('Location: ?step=4');
 		exit;

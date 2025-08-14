@@ -21,7 +21,7 @@
 	</div>
 </section>
 
-<section class="py-5 bg-light">
+<section id="why" class="py-5 bg-light">
 	<div class="container">
 		<h2 class="text-center mb-4">Why Choose Us</h2>
 		<div class="row g-4">
