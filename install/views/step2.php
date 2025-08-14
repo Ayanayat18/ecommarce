@@ -1,0 +1,18 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><title>Install - Step 2</title></head>
+<body class="bg-light">
+	<div class="container py-5">
+		<h1 class="h4 mb-4">Installation - Step 2: Database</h1>
+		<?php if (!empty($error)): ?><div class="alert alert-danger"><?= htmlspecialchars($error) ?></div><?php endif; ?>
+		<form method="post" class="row g-3">
+			<div class="col-md-6"><label class="form-label">App Name</label><input class="form-control" name="APP_NAME" value="Aurora Holdings"></div>
+			<div class="col-md-6"><label class="form-label">App URL</label><input class="form-control" name="APP_URL" value="http://localhost"></div>
+			<div class="col-md-4"><label class="form-label">DB Host</label><input class="form-control" name="DB_HOST" value="127.0.0.1"></div>
+			<div class="col-md-2"><label class="form-label">DB Port</label><input class="form-control" name="DB_PORT" value="3306"></div>
+			<div class="col-md-3"><label class="form-label">DB Name</label><input class="form-control" name="DB_DATABASE" value="realestate"></div>
+			<div class="col-md-3"><label class="form-label">DB User</label><input class="form-control" name="DB_USERNAME" value="root"></div>
+			<div class="col-md-6"><label class="form-label">DB Password</label><input class="form-control" type="password" name="DB_PASSWORD" value=""></div>
+			<div class="col-12"><button class="btn btn-primary">Save & Continue</button></div>
+		</form>
+	</div>
+</body></html>
